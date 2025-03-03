@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import isen.App;
 import isen.db.daos.DataSourceFactory;
 import isen.db.entities.Person;
 

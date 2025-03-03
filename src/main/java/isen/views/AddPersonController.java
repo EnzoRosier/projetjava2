@@ -1,12 +1,9 @@
 package isen.views;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 
 import isen.App;
-import isen.db.daos.DataSourceFactory;
 import isen.db.entities.Person;
 import isen.services.PersonService;
 import javafx.fxml.FXML;
