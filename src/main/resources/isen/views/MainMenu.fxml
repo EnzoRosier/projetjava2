@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.views.MainMenuController">
+   <children>
+      <Button fx:id="addPersonButton" layoutX="507.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleAddPersonButton" text="Add Person" />
+      <Button fx:id="addPersonButton1" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleEditPersonButton" text="Edit Abby" />
+      <TableView fx:id="listPerson" prefHeight="400.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="First Name" />
+          <TableColumn prefWidth="76.66669464111328" text="Last Name" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
