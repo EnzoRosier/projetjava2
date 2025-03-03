@@ -5,5 +5,6 @@ module isen {
 
     opens isen to javafx.fxml;
     opens isen.views to javafx.fxml;
+    opens isen.db.entities to javafx.base;
     exports isen;
 }
