@@ -14,7 +14,7 @@ import isen.db.entities.Person;
 
 public class PersonService {
 
-    public static List<Person> get_list_person() {
+    public static List<Person> getListPerson() {
         ArrayList<Person> listPerson = new ArrayList<Person>();
         try (Connection connection = DataSourceFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person")) {
@@ -47,7 +47,7 @@ public class PersonService {
         return listPerson;
     }
 
-    public static Person add_person(Person newPerson) {
+    public static Person addPerson(Person newPerson) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -61,15 +61,39 @@ public class PersonService {
                 statement.setDate(7, Date.valueOf(newPerson.getBirthDate()));
                 statement.executeUpdate();
                 ResultSet ids = statement.getGeneratedKeys();
-				if (ids.next()) {
-					newPerson.setId(ids.getInt(1));
-					return newPerson;
-				}
+                if (ids.next()) {
+                    newPerson.setId(ids.getInt(1));
+                    return newPerson;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Person editPerson(Person person) {
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE person SET lastname = ?, firstname = ?, nickname = ?, phone_number = ?, address = ?, email_address = ?, birth_date = ? WHERE idperson = ?")) {
+                statement.setString(1, person.getLastName());
+                statement.setString(2, person.getFirstName());
+                statement.setString(3, person.getNickname());
+                statement.setString(4, person.getPhoneNumber());
+                statement.setString(5, person.getAddress());
+                statement.setString(6, person.getEmailAddress());
+                statement.setDate(7, Date.valueOf(person.getBirthDate()));
+                statement.setInt(8, person.getId());
+                statement.executeUpdate();
+                return person;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            
         }
         return null;
     }

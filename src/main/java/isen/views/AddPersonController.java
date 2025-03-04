@@ -38,7 +38,7 @@ public class AddPersonController {
         Person person_to_add = new Person(lastNameTextField.getText(), firstNameTextField.getText(), nicknameTextField.getText(),
                 phoneNumberTextField.getText(), addressTextField.getText(), emailTextField.getText(),
                 Date.valueOf(birthDateDatePicker.getValue()).toLocalDate());
-        PersonService.add_person(person_to_add);
+        PersonService.addPerson(person_to_add);
         App.setRoot("/isen/views/MainMenu");
     }
 }
