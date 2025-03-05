@@ -49,7 +49,7 @@ public class TestPersonService {
                 List<Person> list_person = PersonService.getListPerson();
                 assertThat(list_person).hasSize(2);
                 assertThat(list_person)
-                                .extracting("firstName", "lastName", "nickname", "phoneNumber", "address",
+                                .extracting("lastName", "FirstName", "nickname", "phoneNumber", "address",
                                                 "emailAddress",
                                                 "birthDate")
                                 .contains(
@@ -75,5 +75,20 @@ public class TestPersonService {
                                 LocalDate.of(1987, 1, 20), 1);
                 Person editedPerson = PersonService.editPerson(newPerson);
                 assertThat(editedPerson).usingRecursiveComparison().ignoringFields("id").isEqualTo(newPerson);
+        }
+
+        @Test
+        public void testDeletePerson() {
+                Person newPerson = new Person("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
+                                LocalDate.of(1987, 1, 20), 1);
+                Person addedPerson = PersonService.addPerson(newPerson);
+                List<Person> list_person1 = PersonService.getListPerson();
+                //Vérification que la personne est ajoutée
+                assertThat(list_person1).extracting("lastName","firstName","nickname","phoneNumber","address","emailAddress","birthDate").contains(tuple("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
+                                LocalDate.of(1987, 1, 20)));
+                PersonService.deletePerson(newPerson);
+                List<Person> list_person2 = PersonService.getListPerson();
+                //vérification que la personne est supprimée
+                assertThat(list_person2).doesNotContain(newPerson);
         }
 }

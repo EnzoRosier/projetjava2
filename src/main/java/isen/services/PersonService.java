@@ -29,7 +29,7 @@ public class PersonService {
                         LocalDate birthDate = res.getDate("birth_date").toLocalDate();
                         Integer id = res.getInt("idperson");
 
-                        Person personne = new Person(firstname, lastname, nickname, phoneNumber, address,
+                        Person personne = new Person(lastname, firstname, nickname, phoneNumber, address,
                                 emailAddress, birthDate, id);
                         listPerson.add(personne);
                     }
@@ -96,5 +96,18 @@ public class PersonService {
             
         }
         return null;
+    }
+
+    public static void deletePerson(Person person) {
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("DELETE FROM person WHERE idperson = ?")) {
+                statement.setInt(1, person.getId());
+                statement.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
