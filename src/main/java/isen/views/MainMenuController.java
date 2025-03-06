@@ -90,6 +90,13 @@ public class MainMenuController {
         refreshListPerson();
     }
 
+    @FXML
+    private void handleRemovePersonButton() {
+        Person person_to_remove = tableViewPerson.getSelectionModel().getSelectedItem();
+        PersonService.deletePerson(person_to_remove);
+        refreshListPerson();
+    }
+
     private void refreshListPerson() {
         List<Person> listPerson = PersonService.getListPerson();
         System.out.println(listPerson);
