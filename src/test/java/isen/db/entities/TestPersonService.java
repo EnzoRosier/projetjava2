@@ -10,14 +10,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import isen.db.daos.DataSourceFactory;
 import isen.services.PersonService;
 
 public class TestPersonService {
-        @BeforeAll
-        public static void init() throws SQLException {
+
+        @BeforeEach
+        public void init() throws SQLException {
                 DataSourceFactory.setConnectionUrl("jdbc:sqlite:sqlite.db");
                 Connection connection = DataSourceFactory.getConnection();
                 Statement stmt = connection.createStatement();
