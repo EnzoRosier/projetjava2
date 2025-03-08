@@ -38,7 +38,7 @@
           <Menu mnemonicParsing="false" text="Menu">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleAddPersonButton" text="Add Person" />
-                  <MenuItem mnemonicParsing="false" text="Exit" />
+                  <MenuItem mnemonicParsing="false" onAction="#exitApplication" text="Exit" />
             </items>
           </Menu>
         </menus>
