@@ -68,6 +68,12 @@ public class TestPersonService {
                 Person newPerson = new Person("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
                                 LocalDate.of(1987, 1, 20));
                 Person addedPerson = PersonService.addPerson(newPerson);
+                List<Person> list_person = PersonService.getListPerson();
+                assertThat(list_person)
+                    .extracting("lastName", "firstName", "nickname", "phoneNumber", "address", "emailAddress", "birthDate")
+                    .contains(tuple("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
+                                    LocalDate.of(1987, 1, 20)));
+                
                 assertThat(addedPerson).usingRecursiveComparison().ignoringFields("id").isEqualTo(newPerson);
         }
 
@@ -76,7 +82,15 @@ public class TestPersonService {
                 Person newPerson = new Person("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
                                 LocalDate.of(1987, 1, 20), 1);
                 Person editedPerson = PersonService.editPerson(newPerson);
+                assertThat(editedPerson).isNotNull();
                 assertThat(editedPerson).usingRecursiveComparison().ignoringFields("id").isEqualTo(newPerson);
+                
+                //Vérification que newPerson est dans la base de donnée
+                List<Person> list_person = PersonService.getListPerson();
+                assertThat(list_person)
+                    .extracting("lastName", "firstName", "nickname", "phoneNumber", "address", "emailAddress", "birthDate")
+                    .contains(tuple("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
+                                    LocalDate.of(1987, 1, 20)));
         }
 
         @Test
