@@ -7,6 +7,7 @@ import java.util.List;
 import isen.App;
 import isen.db.entities.Person;
 import isen.services.PersonService;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -80,6 +81,10 @@ public class MainMenuController {
     private void handleAddPersonButton() throws IOException {
         App.setRoot("/isen/views/AddPersonMenu");
     }
+    
+    public void exitApplication() {
+		Platform.exit();
+	}
 
     @FXML
     private void handleEditPersonButton() throws IOException {
