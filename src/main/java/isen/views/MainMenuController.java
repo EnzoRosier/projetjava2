@@ -119,6 +119,8 @@ public class MainMenuController {
             addressTextField.setText(person.getAddress());
             emailTextField.setText(person.getEmailAddress());
             birthDateDatePicker.setValue(person.getBirthDate());
+            editPersonButton.setText("Edit " + person.getFirstName() );
+            removePersonButton.setText("Remove " + person.getFirstName());
         }
     }
 }
