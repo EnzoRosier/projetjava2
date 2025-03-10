@@ -41,7 +41,7 @@ public class AddPersonController {
 
     @FXML
     private void handleAddPersonButton() throws IOException {
-              List<String> errors = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
 
         // Vérification des champs
         if (firstNameTextField.getText().trim().isEmpty()) errors.add("First name field is empty");
