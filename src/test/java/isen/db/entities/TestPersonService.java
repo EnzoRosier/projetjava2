@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -111,7 +110,6 @@ public class TestPersonService {
         public void testDeletePerson() {
                 Person newPerson = new Person("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
                                 LocalDate.of(1987, 1, 20), 1);
-                Person addedPerson = PersonService.addPerson(newPerson);
                 List<Person> list_person1 = PersonService.getListPerson();
                 //Vérification que la personne est ajoutée
                 assertThat(list_person1).extracting("lastName","firstName","nickname","phoneNumber","address","emailAddress","birthDate").contains(tuple("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
