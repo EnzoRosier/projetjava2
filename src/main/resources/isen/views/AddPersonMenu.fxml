@@ -6,24 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.views.AddPersonController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@projet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.views.AddPersonController">
    <children>
       <DatePicker fx:id="birthDateDatePicker" layoutX="14.0" layoutY="200.0" />
       <TextField fx:id="firstNameTextField" layoutX="14.0" layoutY="60.0" />
       <TextField fx:id="lastNameTextField" layoutX="225.0" layoutY="60.0" />
       <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new person" />
-      <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" />
-      <Text layoutX="225.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" />
+      <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="First name" />
+      <Text layoutX="225.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Last name" />
       <TextField fx:id="nicknameTextField" layoutX="436.0" layoutY="60.0" />
-      <Text layoutX="436.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" />
+      <Text layoutX="436.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Nickname" />
       <TextField fx:id="phoneNumberTextField" layoutX="14.0" layoutY="130.0" />
-      <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" />
+      <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Phone number" />
       <TextField fx:id="addressTextField" layoutX="226.0" layoutY="130.0" />
-      <Text layoutX="226.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+      <Text layoutX="226.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Address" />
       <TextField fx:id="emailTextField" layoutX="436.0" layoutY="130.0" />
-      <Text layoutX="436.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail address" />
-      <Text layoutX="14.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth date" />
+      <Text layoutX="436.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="E-mail address" />
+      <Text layoutX="14.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Birth date" />
       <Button layoutX="507.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleAddPersonButton" text="Add Person" />
    </children>
 </AnchorPane>

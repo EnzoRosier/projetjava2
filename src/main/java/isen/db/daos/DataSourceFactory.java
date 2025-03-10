@@ -32,7 +32,7 @@ public class DataSourceFactory {
 	 * 
 	 */
 	public static Connection getConnection() throws SQLException {
-		System.out.println(connectionUrl);
+		//System.out.println(connectionUrl);
 		if (connectionUrl == null) {
 			throw new SQLException();
 		}

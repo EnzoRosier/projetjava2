@@ -64,6 +64,20 @@ public class TestPersonService {
         }
 
         @Test
+        public void testGetListPersonWithFilter() {
+                List<Person> list_person = PersonService.getListPerson("Bo");
+                assertThat(list_person).hasSize(1);
+                assertThat(list_person)
+                                .extracting("lastName", "FirstName", "nickname", "phoneNumber", "address",
+                                                "emailAddress",
+                                                "birthDate")
+                                .contains(
+                                                tuple("Bib", "Bob", "bobibob", "0612121212", "Rue yahoo",
+                                                                "EZEZ@2EZE.com",
+                                                                LocalDate.of(2015, 12, 12)));
+        }
+
+        @Test
         public void testAddPerson() {
                 Person newPerson = new Person("Super", "Mario", "64", "6464646464", "Chato Champi", "yahoo@gmail.gouv",
                                 LocalDate.of(1987, 1, 20));

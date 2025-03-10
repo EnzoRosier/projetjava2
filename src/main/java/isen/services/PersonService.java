@@ -47,6 +47,41 @@ public class PersonService {
         return listPerson;
     }
 
+    public static List<Person> getListPerson(String filter) {
+        ArrayList<Person> listPerson = new ArrayList<Person>();
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person WHERE lastname LIKE '%' || ? || '%' OR firstname LIKE '%' || ? || '%'")) {
+                statement.setString(1, filter);
+                statement.setString(2, filter);
+                try (ResultSet res = statement.executeQuery()) {
+                    while (res.next()) {
+                        String firstname = res.getString("firstname");
+                        String lastname = res.getString("lastname");
+                        String nickname = res.getString("nickname");
+                        String phoneNumber = res.getString("phone_number");
+                        String address = res.getString("address");
+                        String emailAddress = res.getString("email_address");
+                        LocalDate birthDate = res.getDate("birth_date").toLocalDate();
+                        Integer id = res.getInt("idperson");
+
+                        Person personne = new Person(lastname, firstname, nickname, phoneNumber, address,
+                                emailAddress, birthDate, id);
+                        listPerson.add(personne);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listPerson;
+    }
+
     public static Person addPerson(Person newPerson) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(

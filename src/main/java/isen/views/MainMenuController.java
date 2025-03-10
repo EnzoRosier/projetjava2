@@ -55,6 +55,9 @@ public class MainMenuController {
     private TextField emailTextField;
 
     @FXML
+    private TextField filterTextField;
+
+    @FXML
     private DatePicker birthDateDatePicker;
 
     @FXML
@@ -70,6 +73,7 @@ public class MainMenuController {
     private void initialize() {
         refreshListPerson();
 
+        //Add listener for when selection changes
         tableViewPerson.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
             @Override
             public void changed(ObservableValue<? extends Person> observable,
@@ -77,17 +81,29 @@ public class MainMenuController {
                 showPersonDetail(newValue);
             }
         });
+
+        //Add listener for when filter changes
+        filterTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                    String oldValue, String newValue) {
+                refreshListPerson();
+            }
+        });
     }
 
+    //Goto AddPersonMenu
     @FXML
     private void handleAddPersonButton() throws IOException {
         App.setRoot("/isen/views/AddPersonMenu");
     }
     
+    //Exit App
     public void exitApplication() {
 		Platform.exit();
 	}
 
+    //Show the error popup
     @FXML
     private void showPopup(List<String> errors) throws IOException {
             try {
@@ -143,6 +159,7 @@ public class MainMenuController {
         }
     }
 
+    //Remove person from the list
     @FXML
     private void handleRemovePersonButton() {
         Person person_to_remove = tableViewPerson.getSelectionModel().getSelectedItem();
@@ -150,16 +167,25 @@ public class MainMenuController {
         refreshListPerson();
     }
 
+    //refresh TableView
     private void refreshListPerson() {
-        List<Person> listPerson = PersonService.getListPerson();
-        System.out.println(listPerson);
+        //Get list of person (with or without filter)
+        List<Person> listPerson = new ArrayList<Person>();
+        if (filterTextField.getText() != null) {
+            listPerson = PersonService.getListPerson(filterTextField.getText());
+        } else {
+            listPerson = PersonService.getListPerson();
+        }
+        
+        //add all results in table
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
         tableViewPerson.setItems(FXCollections.observableArrayList(listPerson));
         tableViewPerson.getSelectionModel().clearSelection();
-        showPersonDetail(null);
+        showPersonDetail(null); //Empty edit menu
     }
 
+    //show edit menu
     private void showPersonDetail(Person person) {
         if (person == null) {
             infoPane.setVisible(false);

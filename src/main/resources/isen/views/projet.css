@@ -1,0 +1,23 @@
+.background {
+    -fx-background-color: #08090A;
+}
+
+.text-white {
+    -fx-fill: #FFFFFF;
+}
+
+.text-field {
+    -fx-background-color: #A7A2A9;
+    -fx-text-fill: #08090A;
+    
+}
+
+.text-black {
+    -fx-fill: #08090A;
+    -fx-prompt-text-fill: #454545;
+}
+
+.button {
+    -fx-background-color: #575A5E;
+    -fx-text-fill: #FFFFFF;
+}
